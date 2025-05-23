@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Generador de Actas</title>
+    <script>
+      function numeroALetras(num) {
+        num = parseInt(num);
+        if (isNaN(num)) return "";
+
+        const unidades = [
+          "cero",
+          "uno",
+          "dos",
+          "tres",
+          "cuatro",
+          "cinco",
+          "seis",
+          "siete",
+          "ocho",
+          "nueve",
+        ];
+        const especiales = {
+          10: "diez",
+          11: "once",
+          12: "doce",
+          13: "trece",
+          14: "catorce",
+          15: "quince",
+          16: "dieciséis",
+          17: "diecisiete",
+          18: "dieciocho",
+          19: "diecinueve",
+        };
+        const decenas = [
+          "",
+          "",
+          "veinte",
+          "treinta",
+          "cuarenta",
+          "cincuenta",
+          "sesenta",
+          "setenta",
+          "ochenta",
+          "noventa",
+        ];
+        const centenas = [
+          "",
+          "ciento",
+          "doscientos",
+          "trescientos",
+          "cuatrocientos",
+          "quinientos",
+          "seiscientos",
+          "setecientos",
+          "ochocientos",
+          "novecientos",
+        ];
+
+        if (num === 100) return "cien";
+        if (num < 10) return unidades[num];
+        if (num < 20) return especiales[num];
+        if (num < 100) {
+          const decena = Math.floor(num / 10);
+          const unidad = num % 10;
+          if (unidad === 0) return decenas[decena];
+          return decenas[decena] + " y " + unidades[unidad];
+        }
+        if (num < 1000) {
+          const centena = Math.floor(num / 100);
+          const resto = num % 100;
+          return (
+            centenas[centena] + (resto > 0 ? " " + numeroALetras(resto) : "")
+          );
+        }
+        return num.toString();
+      }
+
+      function sincronizarLiteral(nombre) {
+        const campoNum = document.getElementsByName(nombre)[0];
+        const campoLit = document.getElementsByName(
+          nombre.replace("NUMERAL", "LITERAL")
+        )[0];
+        if (campoLit) campoLit.value = numeroALetras(campoNum.value);
+        calcularTotal();
+      }
+
+      function calcularTotal() {
+        let total = 0;
+        for (let i = 1; i <= 9; i++) {
+          const val =
+            parseFloat(
+              document.getElementsByName(`ITEM${i}_NUMERAL`)[0].value
+            ) || 0;
+          total += val;
+        }
+        document.getElementsByName("TOTAL_NUMERAL")[0].value = total.toFixed(2);
+        document.getElementsByName("TOTAL_LITERAL")[0].value =
+          numeroALetras(total);
+      }
+
+      window.onload = function () {
+        for (let i = 1; i <= 9; i++) {
+          sincronizarLiteral(`ITEM${i}_NUMERAL`);
+        }
+      };
+    </script>
+  </head>
+  <body>
+    <h2>Generar Acta</h2>
+    <form action="/generar" method="post">
+      Nombre del Programa: <input name="NOMBRE_PROGRAMA" required /><br />
+      Postulante: <input name="POSTULANTE" /><br />
+      Evaluador: <input name="EVALUADOR" /><br />
+      Fecha: <input name="FECHA" /><br />
+      Título: <input name="TITULO" /><br /><br />
+
+      <fieldset style="border: 1px solid #ccc; padding: 10px">
+        <legend>Ítems de Evaluación</legend>
+        {% for i in range(1, 10) %} Item {{ i }} Numérico:
+        <input
+          name="ITEM{{ i }}_NUMERAL"
+          value="{{ valores['ITEM' ~ i ~ '_NUMERAL'] }}"
+          oninput="sincronizarLiteral(this.name)"
+        />
+        Item {{ i }} Literal:
+        <input name="ITEM{{ i }}_LITERAL" readonly /><br />
+        {% endfor %}
+      </fieldset>
+      <br />
+
+      <strong>Total Numérico:</strong>
+      <input name="TOTAL_NUMERAL" readonly />
+      <strong>Total Literal:</strong>
+      <input name="TOTAL_LITERAL" readonly /><br /><br />
+
+      Observaciones:<br />
+      <textarea name="OBSERVACIONES" rows="4" cols="50"></textarea><br /><br />
+
+      <button type="submit">Generar</button>
+    </form>
+  </body>
+</html>
