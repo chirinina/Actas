@@ -2,10 +2,10 @@
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
-    <title>Actas</title>
+    <title>ActasEsam</title>
     <link
       rel="icon"
-      href="https://e7.pngegg.com/pngimages/678/741/png-clipart-skill-organization-uttar-pradesh-sales-marketing-registration-acts-text-logo-thumbnail.png"
+      href="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSNoFBZGp1f3QRe-oOloXSZ-HSmDYmNTsvzvA&s"
       type="image/png"
     />
     <script>
@@ -68,8 +68,9 @@
         if (num < 100) {
           const decena = Math.floor(num / 10);
           const unidad = num % 10;
-          if (unidad === 0) return decenas[decena];
-          return decenas[decena] + " y " + unidades[unidad];
+          return unidad === 0
+            ? decenas[decena]
+            : decenas[decena] + " y " + unidades[unidad];
         }
         if (num < 1000) {
           const centena = Math.floor(num / 100);
@@ -115,10 +116,10 @@
     <h2>Generar Acta</h2>
     <form action="/generar" method="post">
       Nombre del Programa: <input name="NOMBRE_PROGRAMA" required /><br />
-      Postulante: <input name="POSTULANTE" /><br />
-      Evaluador: <input name="EVALUADOR" /><br />
-      Fecha: <input name="FECHA" /><br />
-      Título: <input name="TITULO" /><br /><br />
+      Postulante: <input name="POSTULANTE" required /><br />
+      Evaluador: <input name="EVALUADOR" required /><br />
+      Fecha: <input name="FECHA" required /><br />
+      Título: <input name="TITULO" required /><br /><br />
 
       <fieldset style="border: 1px solid #ccc; padding: 10px">
         <legend>Ítems de Evaluación</legend>
