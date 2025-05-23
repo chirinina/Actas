@@ -1,9 +1,24 @@
 from flask import Flask, render_template, request, send_file
 from docx import Document
-import uuid
 import random
 
 app = Flask(__name__)
+
+def reemplazar_texto_con_formato(doc, campos):
+    for p in doc.paragraphs:
+        for run in p.runs:
+            for k, v in campos.items():
+                if k in run.text:
+                    run.text = run.text.replace(k, v)
+
+    for table in doc.tables:
+        for row in table.rows:
+            for cell in row.cells:
+                for p in cell.paragraphs:
+                    for run in p.runs:
+                        for k, v in campos.items():
+                            if k in run.text:
+                                run.text = run.text.replace(k, v)
 
 @app.route('/')
 def index():
@@ -20,28 +35,17 @@ def index():
     valores_aleatorios['TOTAL_NUMERAL'] = str(total)
 
     return render_template('form.html', valores=valores_aleatorios)
+
 @app.route('/generar', methods=['POST'])
 def generar():
     campos = {f"{{{{{k}}}}}": v for k, v in request.form.items()}
     plantilla = "plantilla_acta.docx"
     doc = Document(plantilla)
 
-    for p in doc.paragraphs:
-        for k, v in campos.items():
-            if k in p.text:
-                p.text = p.text.replace(k, v)
+    reemplazar_texto_con_formato(doc, campos)
 
-    for table in doc.tables:
-        for row in table.rows:
-            for cell in row.cells:
-                for k, v in campos.items():
-                    if k in cell.text:
-                        cell.text = cell.text.replace(k, v)
-
-    # Obtener el nombre del postulante desde el formulario
     postulante = request.form.get("POSTULANTE", "documento").replace(" ", "_")
     filename = f"{postulante}.docx"
-
     doc.save(filename)
     return send_file(filename, as_attachment=True)
 
