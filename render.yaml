@@ -1,9 +1,11 @@
 services:
   - type: web
-    name: Actas
+    name: actas              # usa minúsculas para evitar problemas
     env: python
     buildCommand: "pip install -r requirements.txt"
     startCommand: "gunicorn main:app"
     envVars:
       - key: PYTHON_VERSION
         value: 3.10
+    plan: free               # agrega plan explícitamente
+    region: oregon           # agrega región explícitamente
