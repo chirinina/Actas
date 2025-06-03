@@ -1006,8 +1006,8 @@
       #adminPanel .add-user-form input[type="text"],
       #adminPanel .add-user-form input[type="password"],
       #adminPanel .add-user-form select {
-        width: 100%;
-        padding: 10px;
+        width: 30%;
+        padding: 6px;
         background: var(--bg-input-current);
         border: 1px solid var(--border-color-current);
         border-radius: var(--radius-sm);
@@ -1415,7 +1415,7 @@
 
         <footer class="panel-footer-actions">
           <button type="submit" form="actaFormApp" class="action-button-submit">
-            <i class="fas fa-file-word" style="color: #0717ff"></i> Generar Acta
+            <i class="fas fa-file-word" style="color: #0717ff"></i> Generar
           </button>
         </footer>
       </div>
@@ -1433,7 +1433,9 @@
               <i class="fas fa-sun"></i>
             </button>
             <!-- Separate ID for admin theme toggle if needed, or share -->
-            <button id="backToAppBtn">Volver a Actas</button>
+            <button id="backToAppBtn" title="Volver a Actas">
+              <i class="fas fa-arrow-left"></i> Atras
+            </button>
           </div>
         </header>
         <div class="panel-content-area">
@@ -1455,15 +1457,15 @@
           </section>
           <section class="content-card add-user-form">
             <h2 class="card-title">
-              <i class="fas fa-user-plus"></i> Añadir Nuevo Usuario
+              <i class="fas fa-user-plus"></i> Agregas Usuario
             </h2>
             <form id="addUserForm">
               <div class="form-group">
-                <label for="newUsername">Nombre de Usuario:</label>
+                <label for="newUsername">Usuario:</label>
                 <input type="text" id="newUsername" required />
               </div>
               <div class="form-group">
-                <label for="newPassword">Contraseña:</label>
+                <label for="newPassword">Clave</label>
                 <input type="password" id="newPassword" required />
               </div>
               <div class="form-group">
@@ -1686,7 +1688,7 @@
         const themeToggleBtn = document.getElementById("themeToggleBtn");
         const adminThemeToggleBtn = document.getElementById(
           "adminThemeToggleBtn"
-        ); // Assuming a separate button for admin, or use the same
+        );
         const body = document.body;
 
         // --- Theme Toggle Logic ---
@@ -1701,7 +1703,7 @@
             body.classList.remove("light-theme");
           }
           if (themeToggleBtn) themeToggleBtn.innerHTML = iconHtml;
-          if (adminThemeToggleBtn) adminThemeToggleBtn.innerHTML = iconHtml; // If admin has its own button
+          if (adminThemeToggleBtn) adminThemeToggleBtn.innerHTML = iconHtml;
           localStorage.setItem("theme", theme);
         }
 
@@ -1716,7 +1718,7 @@
         if (themeToggleBtn)
           themeToggleBtn.addEventListener("click", toggleThemeOnClick);
         if (adminThemeToggleBtn)
-          adminThemeToggleBtn.addEventListener("click", toggleThemeOnClick); // if admin has its own button
+          adminThemeToggleBtn.addEventListener("click", toggleThemeOnClick);
 
         const savedTheme = localStorage.getItem("theme");
         const prefersDark =
@@ -1728,24 +1730,50 @@
         } else if (prefersDark) {
           applyTheme("dark");
         } else {
-          applyTheme("dark"); // Default to dark if nothing else specified
+          applyTheme("dark");
         }
         // --- End of Theme Toggle Logic ---
 
         // --- Inactivity Logout Logic ---
         let inactivityTimer;
-        const INACTIVITY_TIMEOUT_MS = 5 * 60 * 1000;
+        const INACTIVITY_TIMEOUT_MS = 5 * 60 * 1000; // 5 minutes
 
+        // ***** ESTA ES LA FUNCIÓN MODIFICADA PARA EL LOGOUT *****
         async function performLogoutActions() {
           clearTimeout(inactivityTimer);
+          console.log("Attempting logout...");
           try {
-            await fetch("/logout", { method: "POST" });
+            // Cambiado de POST a GET.
+            // Un error 405 "Method Not Allowed" para una solicitud POST a /logout
+            // a menudo significa que el servidor espera una solicitud GET para esta acción,
+            // o que el endpoint POST no está configurado correctamente en el servidor.
+            // Este cambio intenta usar GET.
+            // Si el servidor realmente requiere POST y tiene otros problemas, esto no solucionará la causa raíz.
+            const response = await fetch("/logout", { method: "GET" }); // CAMBIADO A GET
+
+            if (!response.ok) {
+              // response.ok es false para respuestas HTTP 4xx/5xx
+              console.error(
+                `Logout request to server failed with status: ${response.status} ${response.statusText}`
+              );
+              // Incluso si el logout del lado del servidor falla, redirigiremos del lado del cliente.
+            } else {
+              console.log(
+                "Logout request to server successful (or at least accepted by server)."
+              );
+            }
           } catch (e) {
-            console.error("Error during logout fetch:", e);
+            // Este bloque catch es para errores de red (ej. servidor caído, sin conexión)
+            console.error("Network error during logout fetch:", e);
           } finally {
-            window.location.href = "/"; // Redirect to root, should lead to login
+            // Este bloque finally SIEMPRE se ejecutará después del try/catch.
+            console.log("Redirecting to / after logout attempt.");
+            // Esta línea asegura que el usuario siempre sea redirigido a la página de inicio (login) del lado del cliente.
+            // La invalidación adecuada de la sesión debe ocurrir en el servidor.
+            window.location.href = "/";
           }
         }
+        // ***** FIN DE LA FUNCIÓN MODIFICADA PARA EL LOGOUT *****
 
         function autoLogout() {
           alert("Sesión cerrada por inactividad.");
@@ -1819,7 +1847,7 @@
         });
 
         logoutBtn.addEventListener("click", () => {
-          performLogoutActions();
+          performLogoutActions(); // Llama a la función de logout modificada
         });
 
         adminPanelBtn.addEventListener("click", () => {
@@ -1844,16 +1872,22 @@
           clearTimeout(inactivityTimer);
         }
         function showMainApp(username, role) {
-          /* ... (no change) ... */ loginContainer.style.display = "none";
+          loginContainer.style.display = "none";
           mainAppContent.style.display = "block";
           adminPanel.style.display = "none";
           document.title = "ActasEsam";
-          loggedInUserDisplay.textContent = `Usuario: ${username}`;
+
+          loggedInUserDisplay.innerHTML = `
+    <i class="fas fa-user-circle fa-2x" style="vertical-align: middle; margin-right: 8px;"></i>
+    <span style="font-size: 1.1rem;">${username}</span>
+  `;
+
           if (role === "admin") {
             adminPanelBtn.style.display = "inline-block";
           } else {
             adminPanelBtn.style.display = "none";
           }
+
           initializeMainAppInterface();
           resetInactivityTimer();
         }
