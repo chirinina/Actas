@@ -4,7 +4,6 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>ActasEsam - Login</title>
-    <!-- Favicon con logo desde URL -->
     <link
       rel="icon"
       href="https://i.ibb.co/wRQXShk/Pica-enhance-20250116110447-removebg-preview.png"
@@ -20,7 +19,6 @@
       href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Poppins:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
-    <!-- Boxicons -->
     <link
       href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
       rel="stylesheet"
@@ -28,30 +26,102 @@
 
     <style>
       :root {
+        /* Common */
         --font-body: "Roboto", sans-serif;
         --font-heading: "Poppins", sans-serif;
-        --bg-main: #1a1d24;
-        --bg-panel: #252a33;
-        --bg-panel-light: #03042a;
-        --bg-input: #353c4a;
-        --bg-input-focus: #404859;
-        --text-primary: #e0e0e5;
-        --text-secondary: #a0a0b0;
-        --text-placeholder: #707080;
-        --accent-primary: #ffffff;
-        --accent-secondary: #041dfa;
-        --accent-success: #28a745;
-        --accent-danger: #dc3545;
-        --accent-yellow: #fdb009;
-        --border-color: #404855;
-        --border-focus: var(--accent-primary);
-        --shadow-level-1: 0 2px 8px rgba(0, 0, 0, 0.2);
-        --shadow-level-2: 0 4px 16px rgba(0, 0, 0, 0.25);
-        --radius-sm: 4px;
+        --radius-sm: 24px;
         --radius-md: 6px;
         --radius-lg: 8px;
         --transition-default: all 0.25s ease-out;
+        --accent-success: #28a745;
+        --accent-danger: #dc3545;
+
+        /* Default to Dark Theme values */
+        --bg-main-current: #1a1d24;
+        --bg-panel-current: #252a33;
+        --bg-panel-header-current: #0f1218; /* Darker for panel header */
+        --bg-input-current: #353c4a;
+        --bg-input-focus-current: #404859;
+        --text-primary-current: #e0e0e5;
+        --text-secondary-current: #a0a0b0;
+        --text-placeholder-current: #707080;
+        --text-button-accent-current: #1a1d24; /* Text color for accent buttons */
+        --accent-interactive-current: #ffffff; /* For focused borders, icons on dark bg */
+        --accent-secondary-current: #041dfa; /* A secondary accent, often blue */
+        --accent-theme-current: #00bcd4; /* Main theme color (Cyan for Dark) */
+        --accent-theme-darker-current: #0097a7;
+        --accent-theme-lighter-current: #4dd0e1;
+        --accent-theme-focus-shadow-current: rgba(
+          0,
+          188,
+          212,
+          0.3
+        ); /* Cyan focus shadow */
+        --border-color-current: #404855;
+        --shadow-color-current: rgba(0, 0, 0, 0.2);
+        --shadow-color-strong-current: rgba(0, 0, 0, 0.25);
+        --logo-placeholder-color-current: var(--accent-theme-current);
+        --icon-numerico-color-current: #7986cb; /* Dark theme icon color (from prefers-color-scheme) */
+        --icon-LI-color-current: #a8d5c2; /* Dark theme icon color (from prefers-color-scheme) */
+        --icon-numerico-hover-current: #72a4ef;
+        --icon-LI-hover-current: #01f001;
+        --scrollbar-thumb-current: var(--accent-theme-current);
+        --scrollbar-thumb-hover-current: var(--accent-theme-darker-current);
+        --button-secondary-bg-current: var(--accent-secondary-current);
+        --button-secondary-hover-bg-current: var(--accent-theme-current);
+        --button-secondary-hover-text-current: var(--bg-main-current);
+        --admin-table-header-bg-current: var(--bg-panel-header-current);
+        --admin-table-header-text-current: var(--accent-theme-current);
+        --admin-button-add-user-bg-current: var(--accent-theme-current);
+        --admin-button-add-user-text-current: var(--text-button-accent-current);
+        --admin-button-add-user-hover-bg-current: var(
+          --accent-theme-darker-current
+        );
       }
+
+      body.light-theme {
+        --bg-main-current: #f4f6f8;
+        --bg-panel-current: #ffffff;
+        --bg-panel-header-current: #e9ecef;
+        --bg-input-current: #f8f9fa;
+        --bg-input-focus-current: #e9ecef;
+        --text-primary-current: #212529;
+        --text-secondary-current: #6c757d;
+        --text-placeholder-current: #adb5bd;
+        --text-button-accent-current: #ffffff;
+        --accent-interactive-current: #007bff; /* Primary interactive for light theme */
+        --accent-secondary-current: #0056b3; /* Darker blue for light theme */
+        --accent-theme-current: #007bff; /* Main theme for light (Bootstrap Blue) */
+        --accent-theme-darker-current: #0056b3;
+        --accent-theme-lighter-current: #66aaff;
+        --accent-theme-focus-shadow-current: rgba(
+          0,
+          123,
+          255,
+          0.3
+        ); /* Blue focus shadow */
+        --border-color-current: #dee2e6;
+        --shadow-color-current: rgba(0, 0, 0, 0.1);
+        --shadow-color-strong-current: rgba(0, 0, 0, 0.15);
+        --logo-placeholder-color-current: var(--accent-theme-current);
+        --icon-numerico-color-current: #6c757d;
+        --icon-LI-color-current: #5a6268;
+        --icon-numerico-hover-current: #0056b3;
+        --icon-LI-hover-current: #28a745; /* Green for LI hover in light */
+        --scrollbar-thumb-current: var(--accent-theme-current);
+        --scrollbar-thumb-hover-current: var(--accent-theme-darker-current);
+        --button-secondary-bg-current: var(--accent-secondary-current);
+        --button-secondary-hover-bg-current: var(--accent-theme-current);
+        --button-secondary-hover-text-current: #ffffff;
+        --admin-table-header-bg-current: var(--bg-panel-header-current);
+        --admin-table-header-text-current: var(--accent-theme-darker-current);
+        --admin-button-add-user-bg-current: var(--accent-theme-current);
+        --admin-button-add-user-text-current: #ffffff;
+        --admin-button-add-user-hover-bg-current: var(
+          --accent-theme-darker-current
+        );
+      }
+
       *,
       *::before,
       *::after {
@@ -64,38 +134,40 @@
       }
       body {
         font-family: var(--font-body);
-        background-color: var(--bg-main);
+        background-color: var(--bg-main-current);
         background-image: radial-gradient(
             circle at 15% 50%,
-            rgba(40, 45, 60, 0.15) 0px,
-            transparent 35%
+            color-mix(in srgb, var(--bg-panel-current) 15%, transparent) 0px,
+            /* Themed gradient */ transparent 35%
           ),
           radial-gradient(
             circle at 85% 30%,
-            rgba(60, 70, 90, 0.15) 0px,
-            transparent 35%
+            color-mix(in srgb, var(--bg-panel-current) 15%, transparent) 0px,
+            /* Themed gradient */ transparent 35%
           );
-        color: var(--text-primary);
+        color: var(--text-primary-current);
         display: flex;
         justify-content: center;
         align-items: center;
         min-height: 100vh;
         padding: 20px;
         overflow-x: hidden;
+        transition: background-color 0.3s ease, color 0.3s ease;
       }
       #loginContainer {
         padding: 40px 30px;
-        border-radius: 10px 80px 100px; /* Unique border radius */
-        box-shadow: var(--shadow-level-2);
+        border-radius: 10px 80px 100px;
+        box-shadow: 0 4px 16px var(--shadow-color-strong-current);
         width: 100%;
         max-width: 400px;
         text-align: center;
-        border: 1px solid rgba(255, 255, 255, 0.05);
-        /* background-color: var(--bg-panel); */ /* Uncomment if you want a panel bg for login */
+        border: 1px solid
+          color-mix(in srgb, var(--text-primary-current) 5%, transparent);
+        background-color: var(--bg-panel-current); /* Themed */
       }
       #loginContainer h2 {
         font-family: var(--font-heading);
-        color: var(--accent-yellow);
+        color: var(--accent-theme-current);
         margin-bottom: 25px;
         font-size: 1.8rem;
       }
@@ -103,7 +175,7 @@
         font-family: var(--font-heading);
         font-weight: 700;
         font-size: 1.5rem;
-        color: #eed603;
+        color: var(--logo-placeholder-color-current);
         display: flex;
         align-items: center;
         justify-content: center;
@@ -122,29 +194,33 @@
         display: block;
         font-size: 0.9rem;
         font-weight: 500;
-        color: var(--text-secondary);
+        color: var(--text-secondary-current);
         margin-bottom: 8px;
       }
       #loginContainer .form-input {
-        width: 100%; /* Changed for consistency */
+        width: 100%;
         padding: 12px 15px;
-        border: 1px solid var(--border-color);
+        border: 1px solid var(--border-color-current);
         border-radius: 24px;
-        color: var(--text-primary);
-        font-size: 0.95rem; /* Increased for better readability */
+        color: var(--text-primary-current);
+        font-size: 0.95rem;
         transition: var(--transition-default);
-        background: var(--bg-input); /* Added background */
+        background: var(--bg-input-current);
       }
       #loginContainer .form-input:focus {
         outline: none;
-        border-color: var(--accent-yellow);
-        background: var(--bg-input-focus);
-        box-shadow: 0 0 0 3px rgba(253, 176, 9, 0.3);
+        border-color: var(--accent-theme-current);
+        background: var(--bg-input-focus-current);
+        box-shadow: 0 0 0 3px var(--accent-theme-focus-shadow-current);
       }
       #loginContainer .login-button {
         font-family: var(--font-heading);
-        background: linear-gradient(45deg, #000000, #ffcc33);
-        color: #1a1d24;
+        background: linear-gradient(
+          45deg,
+          color-mix(in srgb, var(--accent-theme-current) 70%, black),
+          var(--accent-theme-current)
+        );
+        color: var(--text-button-accent-current);
         padding: 12px 28px;
         border: none;
         border-radius: 50px;
@@ -152,15 +228,20 @@
         font-weight: 600;
         cursor: pointer;
         transition: var(--transition-default);
-        width: auto; /* Changed from 40% to auto for better fit */
-        min-width: 150px; /* ensure minimum width */
+        width: auto;
+        min-width: 150px;
         margin-top: 10px;
-        box-shadow: 0 4px 15px rgba(253, 176, 9, 0.3);
+        box-shadow: 0 4px 15px var(--accent-theme-focus-shadow-current);
       }
       #loginContainer .login-button:hover {
-        background: linear-gradient(45deg, #ffcc33, #000000);
+        background: linear-gradient(
+          45deg,
+          var(--accent-theme-current),
+          color-mix(in srgb, var(--accent-theme-current) 70%, black)
+        );
         transform: translateY(-2px);
-        box-shadow: 0 6px 20px rgba(253, 176, 9, 0.4);
+        box-shadow: 0 6px 20px
+          color-mix(in srgb, var(--accent-theme-current) 40%, transparent);
       }
       #loginErrorMessage {
         color: var(--accent-danger);
@@ -170,23 +251,24 @@
       }
 
       .composition-panel {
-        background-color: var(--bg-panel);
+        background-color: var(--bg-panel-current);
         width: 100%;
         max-width: 1200px;
         min-height: 90vh;
         border-radius: var(--radius-lg);
-        box-shadow: var(--shadow-level-2);
+        box-shadow: 0 4px 16px var(--shadow-color-strong-current);
         display: flex;
         flex-direction: column;
         overflow: hidden;
         position: relative;
         z-index: 10;
-        border: 1px solid rgba(255, 255, 255, 0.05);
+        border: 1px solid
+          color-mix(in srgb, var(--text-primary-current) 5%, transparent);
       }
       #mainAppContent,
       #adminPanel {
         display: none;
-      } /* Hide initially */
+      }
       .panel-background {
         position: absolute;
         top: 0;
@@ -201,7 +283,7 @@
         border-radius: 50%;
         background: radial-gradient(
           circle,
-          rgba(253, 176, 9, 0.15) 0%,
+          color-mix(in srgb, var(--accent-theme-current) 15%, transparent) 0%,
           transparent 70%
         );
         animation: float 20s infinite linear;
@@ -247,9 +329,9 @@
         }
       }
       .panel-header {
-        background-color: var(--bg-panel-light);
+        background-color: var(--bg-panel-header-current);
         padding: 15px 30px;
-        border-bottom: 1px solid var(--border-color);
+        border-bottom: 1px solid var(--border-color-current);
         display: flex;
         align-items: center;
         justify-content: space-between;
@@ -260,7 +342,7 @@
         font-family: var(--font-heading);
         font-size: 1.6rem;
         font-weight: 600;
-        color: var(--text-primary);
+        color: var(--text-primary-current);
         letter-spacing: 0.5px;
         position: relative;
       }
@@ -268,7 +350,7 @@
         font-family: var(--font-heading);
         font-weight: 700;
         font-size: 1.3rem;
-        color: #eed603;
+        color: var(--logo-placeholder-color-current);
         position: relative;
         display: flex;
         align-items: center;
@@ -297,8 +379,8 @@
       }
       .user-actions button {
         font-family: var(--font-heading);
-        background: var(--accent-secondary);
-        color: var(--text-primary);
+        background: var(--button-secondary-bg-current);
+        color: var(--text-primary-current); /* Ensure good contrast */
         padding: 8px 15px;
         border: none;
         border-radius: var(--radius-sm);
@@ -307,12 +389,22 @@
         transition: var(--transition-default);
       }
       .user-actions button:hover {
-        background: var(--accent-yellow);
-        color: var(--bg-main);
+        background: var(--button-secondary-hover-bg-current);
+        color: var(--button-secondary-hover-text-current);
       }
       .user-actions #loggedInUserDisplay {
-        color: var(--text-secondary);
+        color: var(--text-secondary-current);
         font-size: 0.9rem;
+      }
+      #themeToggleBtn {
+        background: transparent;
+        border: 1px solid var(--border-color-current);
+        color: var(--text-secondary-current);
+        padding: 8px 10px; /* Make it squarish */
+      }
+      #themeToggleBtn:hover {
+        color: var(--accent-theme-current);
+        border-color: var(--accent-theme-current);
       }
 
       .panel-content-area {
@@ -344,26 +436,31 @@
         }
       }
       .content-card {
-        background: rgba(40, 45, 55, 0.5);
+        background: color-mix(
+          in srgb,
+          var(--bg-panel-current) 50%,
+          var(--bg-main-current) 50%
+        ); /* Themed card bg */
         padding: 25px;
         border-radius: var(--radius-md);
-        border: 1px solid rgba(255, 255, 255, 0.05);
-        box-shadow: var(--shadow-level-1);
+        border: 1px solid
+          color-mix(in srgb, var(--text-primary-current) 5%, transparent);
+        box-shadow: 0 2px 8px var(--shadow-color-current);
         backdrop-filter: blur(5px);
         transition: var(--transition-default);
       }
       .content-card:hover {
-        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+        box-shadow: 0 8px 24px var(--shadow-color-strong-current);
         transform: translateY(-3px);
       }
       .card-title {
         font-family: var(--font-heading);
-        font-size: 1.1rem; /* Increased */
-        font-weight: 600; /* Increased */
-        color: var(--accent-yellow);
+        font-size: 1.1rem;
+        font-weight: 600;
+        color: var(--accent-theme-current);
         margin-bottom: 20px;
         padding-bottom: 10px;
-        border-bottom: 1px solid var(--border-color);
+        border-bottom: 1px solid var(--border-color-current);
         letter-spacing: 0.3px;
         display: flex;
         align-items: center;
@@ -371,7 +468,7 @@
       .card-title i {
         margin-right: 10px;
         font-size: 1.2rem;
-        color: var(--accent-secondary);
+        color: var(--accent-secondary-current);
       }
       .form-group {
         margin-bottom: 18px;
@@ -381,16 +478,16 @@
         display: block;
         font-size: 0.9rem;
         font-weight: 500;
-        color: var(--text-secondary);
+        color: var(--text-secondary-current);
         margin-bottom: 8px;
         display: flex;
         align-items: center;
       }
       .form-group label i {
         margin-right: 8px;
-        font-size: 1rem; /* Increased */
+        font-size: 1rem;
         transition: var(--transition-default);
-        color: var(--accent-yellow);
+        color: var(--accent-theme-current);
       }
       .form-input,
       .form-textarea {
@@ -398,8 +495,8 @@
         padding: 10px 14px;
         background: transparent;
         border: none;
-        border-bottom: 1px solid var(--border-color);
-        color: var(--text-primary);
+        border-bottom: 1px solid var(--border-color-current);
+        color: var(--text-primary-current);
         font-size: 0.95rem;
         transition: var(--transition-default);
         position: relative;
@@ -407,13 +504,13 @@
       .form-input:focus,
       .form-textarea:focus {
         outline: none;
-        border-bottom-color: var(--accent-yellow);
+        border-bottom-color: var(--accent-theme-current);
         background: transparent;
-        box-shadow: 0 2px 0 var(--accent-yellow);
+        box-shadow: 0 2px 0 var(--accent-theme-current);
       }
       .form-input::placeholder,
       .form-textarea::placeholder {
-        color: var(--text-placeholder);
+        color: var(--text-placeholder-current);
       }
       .form-input[readonly] {
         background: transparent;
@@ -434,7 +531,7 @@
         left: 50%;
         height: 2px;
         width: 0;
-        background: var(--accent-yellow);
+        background: var(--accent-theme-current);
         transition: var(--transition-default);
         z-index: 1;
       }
@@ -443,12 +540,12 @@
         right: 10px;
         top: 50%;
         transform: translateY(-50%);
-        color: var(--text-secondary);
+        color: var(--text-secondary-current);
         transition: var(--transition-default);
         pointer-events: none;
       }
       .form-input:focus ~ .input-icon {
-        color: var(--accent-yellow);
+        color: var(--accent-theme-current);
         animation: bounce 0.6s;
       }
       @keyframes bounce {
@@ -460,23 +557,28 @@
           transform: translateY(-50%) scale(1.2);
         }
       }
+
       .scoring-module {
         max-height: 70vh;
         overflow-y: auto;
         padding-right: 10px;
       }
       .score-entry-item {
-        background-color: rgba(50, 55, 70, 0.6);
+        background-color: color-mix(
+          in srgb,
+          var(--bg-input-current) 60%,
+          transparent
+        );
         padding: 15px;
-        border-radius: var(--radius-sm); /* Consistent radius */
+        border-radius: var(--radius-sm);
         margin-bottom: 12px;
-        border-left: 3px solid var(--accent-secondary);
+        border-left: 3px solid var(--accent-secondary-current);
         transition: var(--transition-default);
         position: relative;
         overflow: hidden;
       }
       .score-entry-item:hover {
-        border-left-color: var(--accent-yellow);
+        border-left-color: var(--accent-theme-current);
         transform: translateX(3px);
       }
       .score-entry-item::after {
@@ -488,7 +590,7 @@
         height: 100%;
         background: linear-gradient(
           90deg,
-          rgba(253, 176, 9, 0.05) 0%,
+          color-mix(in srgb, var(--accent-theme-current) 5%, transparent) 0%,
           transparent 100%
         );
         opacity: 0;
@@ -501,7 +603,7 @@
       .score-item-header {
         font-size: 0.85rem;
         font-weight: 500;
-        color: var(--text-secondary);
+        color: var(--text-secondary-current);
         margin-bottom: 10px;
         position: relative;
         z-index: 1;
@@ -524,20 +626,25 @@
         font-style: italic;
         font-size: 0.9rem;
       }
+
       .totals-summary-bar {
         background: linear-gradient(
           90deg,
-          rgba(40, 45, 55, 0.6),
-          rgba(50, 60, 80, 0.6)
+          color-mix(in srgb, var(--bg-panel-current) 60%, transparent),
+          color-mix(
+            in srgb,
+            var(--bg-panel-current) 80%,
+            var(--bg-main-current) 20%
+          )
         );
-        padding: 20px; /* Increased padding */
+        padding: 20px;
         border-radius: var(--radius-md);
         display: flex;
         flex-wrap: wrap;
         justify-content: space-around;
         align-items: center;
         gap: 20px;
-        border-top: 2px solid var(--accent-yellow);
+        border-top: 2px solid var(--accent-theme-current);
         position: relative;
         overflow: hidden;
       }
@@ -550,7 +657,7 @@
         height: 100%;
         background: linear-gradient(
           45deg,
-          rgba(253, 176, 9, 0.05),
+          color-mix(in srgb, var(--accent-theme-current) 5%, transparent),
           transparent 70%
         );
         z-index: 0;
@@ -562,29 +669,34 @@
         z-index: 1;
       }
       .total-group .label {
-        font-size: 0.9rem; /* Increased */
-        color: var(--text-secondary);
-        margin-right: 10px; /* Added margin for spacing */
+        font-size: 0.9rem;
+        color: var(--text-secondary-current);
+        margin-right: 10px;
       }
       .total-group .value-display {
-        font-size: 1.1rem; /* Increased */
-        font-weight: 700; /* Bolder */
-        color: var(--text-primary);
+        font-size: 1.1rem;
+        font-weight: 700;
+        color: var(--text-primary-current);
         padding: 8px 15px;
-        background: rgba(255, 255, 255, 0.05); /* Subtle background */
+        background: color-mix(
+          in srgb,
+          var(--text-primary-current) 5%,
+          transparent
+        );
         border-radius: var(--radius-sm);
-        min-width: 100px; /* Adjusted min-width */
+        min-width: 100px;
         border: 1px solid transparent;
         transition: var(--transition-default);
       }
       .total-group .value-display.LI {
-        font-size: 1rem; /* Adjusted */
+        font-size: 1rem;
         font-style: italic;
-        font-weight: 400; /* Normal weight for literal */
-        min-width: 180px; /* More space for text */
+        font-weight: 400;
+        min-width: 180px;
       }
+
       .panel-footer-actions {
-        padding: 20px 30px; /* Increased padding */
+        padding: 20px 30px;
         display: flex;
         justify-content: flex-end;
         align-items: center;
@@ -593,30 +705,39 @@
       }
       .action-button-submit {
         font-family: var(--font-heading);
-        background: linear-gradient(45deg, #fdb009, #ffcc33);
-        color: #1a1d24;
+        background: linear-gradient(
+          45deg,
+          var(--accent-theme-current),
+          var(--accent-theme-lighter-current)
+        );
+        color: var(--text-button-accent-current);
         padding: 12px 28px;
         border: none;
         border-radius: 50px;
-        font-size: 1rem; /* Increased */
+        font-size: 1rem;
         font-weight: 600;
         cursor: pointer;
         transition: var(--transition-default);
         letter-spacing: 0.5px;
         position: relative;
         overflow: hidden;
-        box-shadow: 0 4px 15px rgba(253, 176, 9, 0.3);
+        box-shadow: 0 4px 15px var(--accent-theme-focus-shadow-current);
         display: flex;
         align-items: center;
       }
       .action-button-submit:hover {
-        background: linear-gradient(45deg, #ffcc33, #fdb009);
+        background: linear-gradient(
+          45deg,
+          var(--accent-theme-lighter-current),
+          var(--accent-theme-current)
+        );
         transform: translateY(-3px);
-        box-shadow: 0 6px 20px rgba(253, 176, 9, 0.4);
+        box-shadow: 0 6px 20px
+          color-mix(in srgb, var(--accent-theme-current) 40%, transparent);
       }
       .action-button-submit:active {
         transform: translateY(1px);
-        box-shadow: 0 2px 10px rgba(253, 176, 9, 0.3);
+        box-shadow: 0 2px 10px var(--accent-theme-focus-shadow-current);
       }
       .action-button-submit i {
         margin-right: 8px;
@@ -626,25 +747,27 @@
       .action-button-submit:hover i {
         transform: rotate(10deg);
       }
+
       .scoring-module::-webkit-scrollbar,
       .panel-content-area::-webkit-scrollbar {
         width: 8px;
       }
       .scoring-module::-webkit-scrollbar-track,
       .panel-content-area::-webkit-scrollbar-track {
-        background: var(--bg-panel);
+        background: var(--bg-panel-current);
         border-radius: var(--radius-sm);
       }
       .scoring-module::-webkit-scrollbar-thumb,
       .panel-content-area::-webkit-scrollbar-thumb {
-        background-color: var(--accent-yellow);
+        background-color: var(--scrollbar-thumb-current);
         border-radius: var(--radius-sm);
-        border: 2px solid var(--bg-panel);
+        border: 2px solid var(--bg-panel-current);
       }
       .scoring-module::-webkit-scrollbar-thumb:hover,
       .panel-content-area::-webkit-scrollbar-thumb:hover {
-        background-color: #0603d4;
+        background-color: var(--scrollbar-thumb-hover-current);
       }
+
       @media (max-width: 991px) {
         .panel-content-area {
           grid-template-columns: 1fr;
@@ -724,7 +847,7 @@
       .content-card,
       #adminPanel .content-card {
         animation: fadeIn 0.5s ease-out;
-      } /* Apply to admin panel cards too */
+      }
       .main-info-card {
         animation-delay: 0.1s;
       }
@@ -767,6 +890,7 @@
       .score-entry-item:nth-child(9) {
         animation-delay: 0.6s;
       }
+
       .label i {
         margin-right: 10px;
         font-size: 1.35em;
@@ -776,35 +900,21 @@
         transform: scale(1.1);
       }
       .icon-numerico {
-        color: #3a3f51;
+        color: var(--icon-numerico-color-current);
       }
       .label:hover .icon-numerico {
-        color: #1a73e8;
+        color: var(--icon-numerico-hover-current);
       }
       .icon-LI {
-        color: #374d41;
+        color: var(--icon-LI-color-current);
       }
       .label:hover .icon-LI {
-        color: #2c7a4b;
-      }
-      @media (prefers-color-scheme: dark) {
-        .icon-numerico {
-          color: #7986cb;
-        }
-        .label:hover .icon-numerico {
-          color: #72a4ef;
-        }
-        .icon-LI {
-          color: #a8d5c2;
-        }
-        .label:hover .icon-LI {
-          color: #01f001;
-        }
+        color: var(--icon-LI-hover-current);
       }
 
       /* Admin Panel Styles */
       #adminPanel .panel-content-area {
-        display: block; /* Override grid for simple list */
+        display: block;
       }
       #adminPanel table {
         width: 100%;
@@ -813,21 +923,25 @@
       }
       #adminPanel th,
       #adminPanel td {
-        border: 1px solid var(--border-color);
+        border: 1px solid var(--border-color-current);
         padding: 10px 12px;
         text-align: left;
         font-size: 0.9rem;
       }
       #adminPanel th {
-        background-color: var(--bg-panel-light);
-        color: var(--accent-yellow);
+        background-color: var(--admin-table-header-bg-current);
+        color: var(--admin-table-header-text-current);
         font-weight: 600;
       }
       #adminPanel td {
-        color: var(--text-primary);
+        color: var(--text-primary-current);
       }
       #adminPanel tr:nth-child(even) td {
-        background-color: rgba(255, 255, 255, 0.03);
+        background-color: color-mix(
+          in srgb,
+          var(--text-primary-current) 3%,
+          transparent
+        );
       }
       #adminPanel .action-buttons button {
         margin-right: 5px;
@@ -853,59 +967,68 @@
         background-color: #218838;
       }
       #adminPanel .btn-delete {
-        background-color: var(--text-secondary);
-        color: var(--bg-main);
+        background-color: var(--text-secondary-current);
+        color: var(--bg-main-current);
       }
       #adminPanel .btn-delete:hover {
-        background-color: var(--text-placeholder);
+        background-color: var(--text-placeholder-current);
       }
       #adminPanel .btn-edit-role,
       #adminPanel .btn-reset-password {
-        background-color: var(--accent-secondary);
+        background-color: var(--accent-secondary-current);
         color: white;
       }
       #adminPanel .btn-edit-role:hover,
       #adminPanel .btn-reset-password:hover {
-        background-color: #0056b3;
+        background-color: color-mix(
+          in srgb,
+          var(--accent-secondary-current) 80%,
+          black
+        );
       }
 
       #adminPanel .add-user-form {
         margin-top: 20px;
         padding: 20px;
-        background-color: rgba(50, 55, 70, 0.3);
+        background-color: color-mix(
+          in srgb,
+          var(--bg-input-current) 30%,
+          transparent
+        );
         border-radius: var(--radius-md);
       }
       #adminPanel .add-user-form .form-group {
         margin-bottom: 15px;
       }
       #adminPanel .add-user-form label {
-        color: var(--text-secondary);
+        color: var(--text-secondary-current);
       }
       #adminPanel .add-user-form input[type="text"],
       #adminPanel .add-user-form input[type="password"],
       #adminPanel .add-user-form select {
         width: 100%;
         padding: 10px;
-        background: var(--bg-input);
-        border: 1px solid var(--border-color);
+        background: var(--bg-input-current);
+        border: 1px solid var(--border-color-current);
         border-radius: var(--radius-sm);
-        color: var(--text-primary);
+        color: var(--text-primary-current);
         font-size: 0.9rem;
       }
       #adminPanel .add-user-form input:focus,
       #adminPanel .add-user-form select:focus {
-        border-color: var(--accent-yellow);
-        box-shadow: 0 0 0 2px rgba(253, 176, 9, 0.2);
+        border-color: var(--accent-theme-current);
+        box-shadow: 0 0 0 2px var(--accent-theme-focus-shadow-current);
         outline: none;
       }
       #adminPanel .add-user-form button[type="submit"] {
-        background: var(--accent-yellow);
-        color: var(--bg-main);
+        /* Reuses .action-button-submit styling via class, specific overrides here if needed */
+        background: var(--admin-button-add-user-bg-current);
+        color: var(--admin-button-add-user-text-current);
         padding: 10px 20px;
         font-weight: 600;
       }
       #adminPanel .add-user-form button[type="submit"]:hover {
-        background: #e0a800;
+        background: var(--admin-button-add-user-hover-bg-current);
       }
       .status-active {
         color: var(--accent-success);
@@ -963,11 +1086,22 @@
           </div>
           <h1>Composición de Actas</h1>
           <div class="user-actions">
-            <span id="loggedInUserDisplay"></span>
-            <button id="adminPanelBtn" style="display: none">
-              Admin Usuarios
+            <span id="loggedInUserDisplay">
+              <i class="fas fa-user-circle"></i>
+            </span>
+            <button id="themeToggleBtn" title="Cambiar Tema">
+              <i class="fas fa-sun"></i>
             </button>
-            <button id="logoutBtn">Cerrar Sesión</button>
+            <button
+              id="adminPanelBtn"
+              style="display: none"
+              title="Panel de Administración"
+            >
+              <i class="fas fa-tools"></i>
+            </button>
+            <button id="logoutBtn" title="Cerrar Sesión">
+              <i class="fas fa-sign-out-alt"></i>
+            </button>
           </div>
         </header>
 
@@ -979,9 +1113,7 @@
         >
           <section class="content-card main-info-card">
             <h2 class="card-title">
-              <i class="fas fa-file-signature"></i>
-              <!-- Icon was too big, removed inline style -->
-              Información General del Acta
+              <i class="fas fa-file-signature"></i> Información General del Acta
             </h2>
             <div class="form-group">
               <label for="nombre_programa"
@@ -1051,8 +1183,7 @@
             <h2 class="card-title">
               <i class="fas fa-medal"></i> Detalle de Calificaciones
             </h2>
-
-            <!-- ========= START OF CORRECTED SCORE ITEMS (ORIGINAL STRUCTURE) ========= -->
+            <!-- Score items 1-9 -->
             <div class="score-entry-item">
               <div class="score-item-header">Puntaje Nº 1</div>
               <div class="score-fields">
@@ -1242,13 +1373,11 @@
                 />
               </div>
             </div>
-            <!-- ========= END OF CORRECTED SCORE ITEMS ========= -->
           </section>
 
           <section class="content-card observations-card">
             <h2 class="card-title">
               <i class="fas fa-pen-fancy"></i>Observaciones
-              <!-- Removed text-indigo-700 as it's not a standard CSS class -->
             </h2>
             <textarea
               name="OBSERVACIONES"
@@ -1298,8 +1427,12 @@
           <div class="logo-placeholder">
             <i class="fas fa-graduation-cap"></i> ESAM
           </div>
-          <h1>Panel de Administración de Usuarios</h1>
+          <h1>Admin</h1>
           <div class="user-actions">
+            <button id="adminThemeToggleBtn" title="Cambiar Tema">
+              <i class="fas fa-sun"></i>
+            </button>
+            <!-- Separate ID for admin theme toggle if needed, or share -->
             <button id="backToAppBtn">Volver a Actas</button>
           </div>
         </header>
@@ -1317,9 +1450,7 @@
                   <th>Acciones</th>
                 </tr>
               </thead>
-              <tbody>
-                <!-- User rows will be populated by JS -->
-              </tbody>
+              <tbody></tbody>
             </table>
           </section>
           <section class="content-card add-user-form">
@@ -1347,7 +1478,7 @@
                 class="action-button-submit"
                 style="font-size: 0.9rem; padding: 10px 20px"
               >
-                <i class="fas fa-plus-circle"></i> Añadir Usuario
+                <i class="fas fa-plus-circle"></i> Usuario
               </button>
             </form>
             <p
@@ -1360,9 +1491,8 @@
     </div>
 
     <script>
-      // --- START OF ACTA APP LOGIC (to be initialized after login) ---
       function numeroALetras(num) {
-        num = parseInt(num);
+        /* ... (no change) ... */ num = parseInt(num);
         if (isNaN(num)) return "";
         const unidades = [
           "cero",
@@ -1434,15 +1564,13 @@
         return num.toString();
       }
       function sincronizarLI(nombreCampoNumero) {
-        const campoNum = document.getElementsByName(nombreCampoNumero)[0];
+        /* ... (no change) ... */ const campoNum =
+          document.getElementsByName(nombreCampoNumero)[0];
         const nombreCampoLiteral = nombreCampoNumero.replace("_N", "_LI");
         const campoLit = document.getElementsByName(nombreCampoLiteral)[0];
-
         if (campoNum && campoLit) {
-          // Reemplazar coma por punto para la conversión a flotante, si es necesario
           let valorNumericoStr = campoNum.value.replace(",", ".");
           let vN = parseFloat(valorNumericoStr);
-
           if (isNaN(vN) || campoNum.value.trim() === "") {
             campoLit.value = "";
           } else {
@@ -1451,13 +1579,11 @@
         }
         calcularTotal();
       }
-
       function calcularTotal() {
-        let total = 0;
+        /* ... (no change) ... */ let total = 0;
         for (let i = 1; i <= 9; i++) {
           const campoNum = document.getElementsByName(`ITEM${i}_N`)[0];
           if (campoNum) {
-            // Reemplazar coma por punto para la conversión a flotante
             let valorNumericoStr = campoNum.value.replace(",", ".");
             const val = parseFloat(valorNumericoStr) || 0;
             total += val;
@@ -1465,9 +1591,7 @@
         }
         const totalNumF = document.getElementsByName("TOTAL_N")[0];
         const totalLitF = document.getElementsByName("TOTAL_LI")[0];
-
         if (totalNumF) {
-          // Formatear con dos decimales y usar coma como separador decimal para mostrar
           totalNumF.value = total.toFixed(2).replace(".", ",");
         }
         if (totalLitF) {
@@ -1475,7 +1599,7 @@
         }
       }
       function obtenerFechaFormateada() {
-        const meses = [
+        /* ... (no change) ... */ const meses = [
           "enero",
           "febrero",
           "marzo",
@@ -1495,27 +1619,22 @@
         const anio = hoy.getFullYear();
         return `${dia} de ${mes} de ${anio}`;
       }
-
       function initializeMainAppInterface() {
-        const campoFecha = document.getElementById("fecha");
+        /* ... (no change in core logic, random numbers still applied) ... */ const campoFecha =
+          document.getElementById("fecha");
         if (campoFecha) campoFecha.value = obtenerFechaFormateada();
-
-        // Clear ITEM_N values and sync LI, or set random for demo
         for (let i = 1; i <= 9; i++) {
           const inputN = document.getElementsByName(`ITEM${i}_N`)[0];
           if (inputN) {
-            // inputN.value = (Math.floor(Math.random() * 8) + 4).toString(); // Random int 4-11 for demo
-            inputN.value = ""; // Clear them for normal use
+            inputN.value = (Math.floor(Math.random() * 12) + 4).toString();
             sincronizarLI(`ITEM${i}_N`);
           }
         }
-        calcularTotal(); // Recalculate total after initializing items
-
+        calcularTotal();
         const inputs = document.querySelectorAll(
           "#mainAppContent .form-input:not([readonly])"
         );
         inputs.forEach((input) => {
-          // Ensure parentNode exists before trying to query it
           if (
             input.parentNode &&
             !input.parentNode.querySelector(".input-icon")
@@ -1533,31 +1652,24 @@
             input.parentNode.appendChild(indicator);
           }
         });
-
         const submitBtn = document.querySelector(
           "#mainAppContent .action-button-submit"
         );
         if (submitBtn && !submitBtn.dataset.listenerAttached) {
           submitBtn.addEventListener("click", function (e) {
-            // This is visual feedback. Actual form submission handles the action.
             const originalHTML = this.innerHTML;
             this.innerHTML =
               '<i class="fas fa-spinner fa-spin"></i> Generando Acta...';
-            // The form submission will navigate or download, so resetting might not always be seen
-            // unless submission is prevented client-side or fails.
             setTimeout(() => {
               if (this.innerHTML.includes("fa-spinner")) {
-                // Check if it's still showing spinner
                 this.innerHTML = originalHTML;
               }
-            }, 4000); // Increased timeout
+            }, 4000);
           });
           submitBtn.dataset.listenerAttached = "true";
         }
       }
-      // --- END OF ACTA APP LOGIC ---
 
-      // --- START OF LOGIN & UI CONTROL LOGIC ---
       document.addEventListener("DOMContentLoaded", () => {
         const loginForm = document.getElementById("loginForm");
         const loginContainer = document.getElementById("loginContainer");
@@ -1571,25 +1683,117 @@
           "loggedInUserDisplay"
         );
 
-        // Flask will replace these with actual values or empty strings
+        const themeToggleBtn = document.getElementById("themeToggleBtn");
+        const adminThemeToggleBtn = document.getElementById(
+          "adminThemeToggleBtn"
+        ); // Assuming a separate button for admin, or use the same
+        const body = document.body;
+
+        // --- Theme Toggle Logic ---
+        function applyTheme(theme) {
+          const iconHtml =
+            theme === "light"
+              ? '<i class="fas fa-moon"></i>'
+              : '<i class="fas fa-sun"></i>';
+          if (theme === "light") {
+            body.classList.add("light-theme");
+          } else {
+            body.classList.remove("light-theme");
+          }
+          if (themeToggleBtn) themeToggleBtn.innerHTML = iconHtml;
+          if (adminThemeToggleBtn) adminThemeToggleBtn.innerHTML = iconHtml; // If admin has its own button
+          localStorage.setItem("theme", theme);
+        }
+
+        function toggleThemeOnClick() {
+          if (body.classList.contains("light-theme")) {
+            applyTheme("dark");
+          } else {
+            applyTheme("light");
+          }
+        }
+
+        if (themeToggleBtn)
+          themeToggleBtn.addEventListener("click", toggleThemeOnClick);
+        if (adminThemeToggleBtn)
+          adminThemeToggleBtn.addEventListener("click", toggleThemeOnClick); // if admin has its own button
+
+        const savedTheme = localStorage.getItem("theme");
+        const prefersDark =
+          window.matchMedia &&
+          window.matchMedia("(prefers-color-scheme: dark)").matches;
+
+        if (savedTheme) {
+          applyTheme(savedTheme);
+        } else if (prefersDark) {
+          applyTheme("dark");
+        } else {
+          applyTheme("dark"); // Default to dark if nothing else specified
+        }
+        // --- End of Theme Toggle Logic ---
+
+        // --- Inactivity Logout Logic ---
+        let inactivityTimer;
+        const INACTIVITY_TIMEOUT_MS = 5 * 60 * 1000;
+
+        async function performLogoutActions() {
+          clearTimeout(inactivityTimer);
+          try {
+            await fetch("/logout", { method: "POST" });
+          } catch (e) {
+            console.error("Error during logout fetch:", e);
+          } finally {
+            window.location.href = "/"; // Redirect to root, should lead to login
+          }
+        }
+
+        function autoLogout() {
+          alert("Sesión cerrada por inactividad.");
+          performLogoutActions();
+        }
+
+        function resetInactivityTimer() {
+          clearTimeout(inactivityTimer);
+          if (
+            mainAppContent.style.display === "block" ||
+            adminPanel.style.display === "block"
+          ) {
+            inactivityTimer = setTimeout(autoLogout, INACTIVITY_TIMEOUT_MS);
+          }
+        }
+        function setupActivityListeners() {
+          [
+            "mousemove",
+            "mousedown",
+            "keypress",
+            "scroll",
+            "touchstart",
+            "click",
+          ].forEach((event) => {
+            document.addEventListener(event, resetInactivityTimer, true);
+          });
+        }
+        setupActivityListeners();
+        // --- End of Inactivity Logout Logic ---
+
         const initialUser = "{{ logged_in_user | default('', true) }}";
         const initialRole = "{{ user_role | default('', true) }}";
 
-        if (initialUser) {
+        if (initialUser && initialUser !== "None" && initialUser !== "") {
           showMainApp(initialUser, initialRole);
         } else {
           showLogin();
         }
 
         loginForm.addEventListener("submit", async function (event) {
-          event.preventDefault();
+          /* ... (no change to login submit) ... */ event.preventDefault();
           const username = event.target.username.value;
           const password = event.target.password.value;
           loginErrorMessage.textContent = "";
-          loginForm.querySelector(".login-button").innerHTML =
+          const loginButton = loginForm.querySelector(".login-button");
+          loginButton.innerHTML =
             '<i class="fas fa-spinner fa-spin"></i> Ingresando...';
-          loginForm.querySelector(".login-button").disabled = true;
-
+          loginButton.disabled = true;
           try {
             const response = await fetch("/login", {
               method: "POST",
@@ -1597,7 +1801,6 @@
               body: JSON.stringify({ username, password }),
             });
             const data = await response.json();
-
             if (data.success) {
               showMainApp(data.username, data.role);
             } else {
@@ -1610,37 +1813,38 @@
             loginErrorMessage.textContent =
               "Error de conexión con el servidor.";
           } finally {
-            loginForm.querySelector(".login-button").innerHTML = "Ingresar";
-            loginForm.querySelector(".login-button").disabled = false;
+            loginButton.innerHTML = "Ingresar";
+            loginButton.disabled = false;
           }
         });
 
         logoutBtn.addEventListener("click", () => {
-          window.location.href = "/logout";
+          performLogoutActions();
         });
 
         adminPanelBtn.addEventListener("click", () => {
-          mainAppContent.style.display = "none";
+          /* ... (no change) ... */ mainAppContent.style.display = "none";
           adminPanel.style.display = "block";
           document.title = "Admin - ActasEsam";
           loadAdminUsers();
+          resetInactivityTimer();
         });
-
         backToAppBtn.addEventListener("click", () => {
-          adminPanel.style.display = "none";
+          /* ... (no change) ... */ adminPanel.style.display = "none";
           mainAppContent.style.display = "block";
           document.title = "ActasEsam";
+          resetInactivityTimer();
         });
 
         function showLogin() {
-          loginContainer.style.display = "block";
+          /* ... (no change) ... */ loginContainer.style.display = "block";
           mainAppContent.style.display = "none";
           adminPanel.style.display = "none";
           document.title = "Login - ActasEsam";
+          clearTimeout(inactivityTimer);
         }
-
         function showMainApp(username, role) {
-          loginContainer.style.display = "none";
+          /* ... (no change) ... */ loginContainer.style.display = "none";
           mainAppContent.style.display = "block";
           adminPanel.style.display = "none";
           document.title = "ActasEsam";
@@ -1650,26 +1854,25 @@
           } else {
             adminPanelBtn.style.display = "none";
           }
-          initializeMainAppInterface(); // Initialize acta form data and UI elements
+          initializeMainAppInterface();
+          resetInactivityTimer();
         }
 
-        // --- Admin Panel JS ---
+        // --- Admin Panel JS (no changes to its internal logic) ---
         const usersTableBody = document.querySelector("#usersTable tbody");
         const addUserForm = document.getElementById("addUserForm");
         const adminMessage = document.getElementById("adminMessage");
-
         async function loadAdminUsers() {
-          adminMessage.textContent = "Cargando usuarios...";
-          adminMessage.style.color = "var(--text-secondary)";
+          /* ... */ adminMessage.textContent = "Cargando usuarios...";
+          adminMessage.style.color = "var(--text-secondary-current)";
           try {
             const response = await fetch("/admin/users");
             if (!response.ok)
               throw new Error(`HTTP error! status: ${response.status}`);
             const data = await response.json();
-
             if (data.success) {
               renderUsersTable(data.users);
-              adminMessage.textContent = ""; // Clear loading message
+              adminMessage.textContent = "";
             } else {
               adminMessage.textContent =
                 "Error al cargar usuarios: " + (data.message || "Desconocido");
@@ -1682,9 +1885,8 @@
             adminMessage.style.color = "var(--accent-danger)";
           }
         }
-
         function renderUsersTable(users) {
-          usersTableBody.innerHTML = "";
+          /* ... */ usersTableBody.innerHTML = "";
           if (!users || users.length === 0) {
             const row = usersTableBody.insertRow();
             const cell = row.insertCell();
@@ -1695,40 +1897,29 @@
           }
           users.forEach((user) => {
             const row = usersTableBody.insertRow();
-            row.innerHTML = `
-                    <td>${user.username}</td>
-                    <td>${user.role}</td>
-                    <td>
-                        <span class="${
-                          user.is_active ? "status-active" : "status-inactive"
-                        }">
-                            ${user.is_active ? "Activo" : "Inactivo"}
-                        </span>
-                    </td>
-                    <td class="action-buttons">
-                        <button class="${
-                          user.is_active ? "btn-disable" : "btn-enable"
-                        }" onclick="toggleUserStatus('${
+            row.innerHTML = ` <td>${user.username}</td> <td>${
+              user.role
+            }</td> <td><span class="${
+              user.is_active ? "status-active" : "status-inactive"
+            }">${
+              user.is_active ? "Activo" : "Inactivo"
+            }</span></td> <td class="action-buttons"> <button class="${
+              user.is_active ? "btn-disable" : "btn-enable"
+            }" onclick="toggleUserStatus('${
               user.username
-            }', ${!user.is_active})">
-                            ${user.is_active ? "Desactivar" : "Activar"}
-                        </button>
-                        <button class="btn-delete" onclick="deleteUser('${
-                          user.username
-                        }')">Eliminar</button>
-                        <button class="btn-reset-password" onclick="promptResetPassword('${
-                          user.username
-                        }')">Reset Pass</button>
-                        <button class="btn-edit-role" onclick="promptChangeRole('${
-                          user.username
-                        }', '${user.role}')">Cambiar Rol</button>
-                    </td>
-                `;
+            }', ${!user.is_active})">${
+              user.is_active ? "Desactivar" : "Activar"
+            }</button> <button class="btn-delete" onclick="deleteUser('${
+              user.username
+            }')">Eliminar</button> <button class="btn-reset-password" onclick="promptResetPassword('${
+              user.username
+            }')">Reset Pass</button> <button class="btn-edit-role" onclick="promptChangeRole('${
+              user.username
+            }', '${user.role}')">Cambiar Rol</button> </td>`;
           });
         }
-
         addUserForm.addEventListener("submit", async function (event) {
-          event.preventDefault();
+          /* ... */ event.preventDefault();
           const username = document.getElementById("newUsername").value;
           const password = document.getElementById("newPassword").value;
           const role = document.getElementById("newUserRole").value;
@@ -1740,7 +1931,6 @@
             '<i class="fas fa-spinner fa-spin"></i> Añadiendo...';
           submitButton.disabled = true;
           adminMessage.textContent = "";
-
           try {
             const response = await fetch("/admin/users/add", {
               method: "POST",
@@ -1767,9 +1957,8 @@
             submitButton.disabled = false;
           }
         });
-
         window.toggleUserStatus = async function (username, newStatus) {
-          if (
+          /* ... */ if (
             !confirm(
               `¿Seguro que quieres ${
                 newStatus ? "activar" : "desactivar"
@@ -1803,12 +1992,11 @@
             adminMessage.style.color = "var(--accent-danger)";
           }
         };
-
         window.promptResetPassword = async function (username) {
-          const newPassword = prompt(
+          /* ... */ const newPassword = prompt(
             `Ingrese la nueva contraseña para ${username}:`
           );
-          if (newPassword === null) return; // User cancelled
+          if (newPassword === null) return;
           if (newPassword.trim() === "") {
             alert("La contraseña no puede estar vacía.");
             return;
@@ -1840,13 +2028,12 @@
             adminMessage.style.color = "var(--accent-danger)";
           }
         };
-
         window.promptChangeRole = async function (username, currentRole) {
-          const newRole = prompt(
+          /* ... */ const newRole = prompt(
             `Cambiar rol para ${username} (actual: ${currentRole}). Ingrese 'admin' o 'user':`,
             currentRole
           );
-          if (newRole === null) return; // User cancelled
+          if (newRole === null) return;
           const trimmedNewRole = newRole.trim().toLowerCase();
           if (trimmedNewRole !== "admin" && trimmedNewRole !== "user") {
             alert("Rol inválido. Debe ser 'admin' o 'user'.");
@@ -1879,9 +2066,8 @@
             adminMessage.style.color = "var(--accent-danger)";
           }
         };
-
         window.deleteUser = async function (username) {
-          if (
+          /* ... */ if (
             !confirm(
               `¿Seguro que quieres eliminar al usuario ${username}? Esta acción no se puede deshacer.`
             )
@@ -1911,7 +2097,6 @@
           }
         };
       });
-      // --- END OF LOGIN & UI CONTROL LOGIC ---
     </script>
   </body>
 </html>
