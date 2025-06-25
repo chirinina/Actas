@@ -1,0 +1,26 @@
+[
+  {
+    "username": "admin",
+    "password": "admin123",
+    "role": "admin",
+    "is_active": true
+  },
+  {
+    "username": "usuario1",
+    "password": "usuario11",
+    "role": "user",
+    "is_active": true
+  },
+  {
+    "username": "echirinina",
+    "password": "13071262",
+    "role": "user",
+    "is_active": true
+  },
+  {
+    "username": "71014010",
+    "password": "71014010",
+    "role": "user",
+    "is_active": true
+  }
+]
