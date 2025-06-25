@@ -1,3 +1,6 @@
 Flask
 gunicorn
 python-docx
+Flask-SQLAlchemy
+PyMySQL
+werkzeug
