@@ -204,15 +204,17 @@ def generar():
     return send_file(buffer, as_attachment=True, download_name=filename, mimetype="application/vnd.openxmlformats-officedocument.wordprocessingml.document")
 
 # --- CREAR TABLAS AL PRIMER REQUEST ---
-@app.before_first_request
-def inicializar_bd():
-    db.create_all()
-    if not User.query.first():
-        admin_user = User(username='admin', role='admin', is_active=True)
-        admin_user.set_password('admin')
-        db.session.add(admin_user)
-        db.session.commit()
-        print("Usuario 'admin' creado con contraseña 'changeme'.")
+if __name__ == '__main__':
+    with app.app_context():
+        db.create_all()
+        if not User.query.first():
+            admin_user = User(username='admin', role='admin', is_active=True)
+            admin_user.set_password('admin')
+            db.session.add(admin_user)
+            db.session.commit()
+            print("Usuario 'admin' creado con contraseña 'admin'.")
+    app.run(debug=True)
+
 
 # --- EJECUTAR APP ---
 if __name__ == '__main__':
