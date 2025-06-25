@@ -15,7 +15,10 @@ app.config['SECRET_KEY'] = 'your_very_secret_key_for_session_management_v2'
 # --- NUEVA CONFIGURACIÓN DE LA BASE DE DATOS ---
 # Formato: 'mysql+pymysql://<usuario>:<contraseña>@<host>/<nombre_db>'
 # Usando los datos de tu ejemplo de Sequelize. 'root' sin contraseña.
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:@localhost/actas'
+# app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:@localhost/actas'
+# app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:@localhost/actas'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///app.db'
+
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 # Inicializa la extensión de la base de datos
